@@ -54,7 +54,7 @@ the output.
 4. Review the summary and any warnings.
 5. Click **Download combined CSV**.
 
-## Development / deployment
+## Development
 
 It's a static site (`index.html`, `styles.css`, `app.js`) — no build step. To run locally:
 
@@ -63,5 +63,17 @@ python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-Deployment to GitHub Pages is automated via `.github/workflows/deploy.yml` on every push
-to the deploy branch.
+## Deployment to GitHub Pages
+
+Deployment is automated via `.github/workflows/deploy.yml`. It builds and publishes the
+site on every push to `main` (and can be triggered manually from the Actions tab).
+
+**One-time setup (required):** GitHub doesn't let the Actions token switch Pages on by
+itself, so enable it once:
+
+1. Go to **Settings → Pages**.
+2. Under **Build and deployment → Source**, choose **GitHub Actions**.
+
+After that, push to `main` (or run the workflow manually via **Actions → Deploy to GitHub
+Pages → Run workflow**) and the site goes live at
+`https://<your-username>.github.io/csv_append/`.
