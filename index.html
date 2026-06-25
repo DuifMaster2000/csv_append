@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSV Appender — TradingView Data Merger</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <h1>CSV Appender</h1>
+      <p class="subtitle">
+        Merge multiple TradingView historical exports into one continuous CSV.
+        Overlaps are de-duplicated automatically and suspicious data gaps are flagged.
+        Everything runs in your browser &mdash; your files never leave your machine.
+      </p>
+    </header>
+
+    <section id="drop-zone" class="drop-zone" tabindex="0" aria-label="Upload CSV files">
+      <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true">
+        <path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p><strong>Drop CSV files here</strong> or click to browse</p>
+      <p class="hint">You can add several files at once, or a few at a time.</p>
+      <input type="file" id="file-input" accept=".csv,text/csv" multiple hidden />
+    </section>
+
+    <section id="file-list-section" class="hidden">
+      <h2>Files to merge <span id="file-count" class="badge"></span></h2>
+      <ul id="file-list" class="file-list"></ul>
+      <div class="actions">
+        <button id="process-btn" class="btn btn-primary">Merge &amp; Check</button>
+        <button id="clear-btn" class="btn btn-ghost">Clear all</button>
+      </div>
+    </section>
+
+    <section id="progress-section" class="hidden">
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      <p id="progress-text" class="progress-text"></p>
+    </section>
+
+    <section id="results-section" class="hidden">
+      <div id="results-summary"></div>
+      <div id="results-warnings"></div>
+      <div class="actions">
+        <button id="download-btn" class="btn btn-primary" disabled>Download combined CSV</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>Runs entirely client-side. No upload, no tracking.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
